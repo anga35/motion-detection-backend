@@ -160,8 +160,3 @@ cython_debug/
 #.idea/
 
 #Django
-static
-staticfiles
-Procfile
-requirements.txt
-runtime.txt

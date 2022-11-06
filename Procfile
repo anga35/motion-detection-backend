@@ -1,0 +1,1 @@
+web: gunicorn motion_detection.wsgi --log-file -
