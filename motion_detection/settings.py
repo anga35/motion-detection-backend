@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-ee=g^k)*(nl8row1o6w_c#+qg12h6m&mott&!g)*i_a_16pt31
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://motion-detection-backend-production.up.railway.app']
 
 
 # Application definition
