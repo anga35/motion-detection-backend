@@ -28,4 +28,5 @@ class LoginView(APIView):
         if(not is_valid):
             return Response(serializer.errors,status=400)
 
-        return Response({'access_token':serializer.validated_data['token'].key})
+        return Response({'access_token':serializer.validated_data['token'].key,
+        'status':200})
