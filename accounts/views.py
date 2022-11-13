@@ -26,6 +26,7 @@ class LoginView(APIView):
         serializer=LoginSerializer(data=data)
         is_valid=serializer.is_valid()
         if(not is_valid):
+            print('LOG: NOT VALID LOGIN SERIALIZER')
             return Response(serializer.errors,status=400)
 
         return Response({'access_token':serializer.validated_data['token'].key,

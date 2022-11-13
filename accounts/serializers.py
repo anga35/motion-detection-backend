@@ -27,6 +27,7 @@ class LoginSerializer(serializers.Serializer):
 
     def validate_password(self,value):
         if(len(value)<8):
+            print('LOG: INVALID PASSWORD')
             raise serializers.ValidationError("Password length not up to 8")
         return value
 
@@ -34,8 +35,10 @@ class LoginSerializer(serializers.Serializer):
         super().validate(attrs)
         user=authenticate(username=attrs['email'],password=attrs['password'])
         if(not user):
+            print('LOG: INVALID CREDENTIALS')
             raise serializers.ValidationError("Invalid login credentials")
 
+        print('LOG: AUTH SUCCESS')
         token=Token.objects.create(user=user)
         attrs['token']=token
         return attrs
