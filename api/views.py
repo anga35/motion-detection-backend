@@ -22,7 +22,7 @@ class AddCapturedFrameView(APIView):
             picture=request.FILES['captured_frame']
             frame=CaptureFrame(image=picture)
             frame.save()
-            return Response("Success",status=200)
+            return Response({'status':200},status=200)
         else:
             return Response("No picture",status=404)
 
@@ -32,5 +32,5 @@ class GetAllCaptures(APIView):
     def get(self,request):
         captures=CaptureFrame.objects.order_by('-created_at')
         serializer=CaptureFrameSerializer(captures,many=True)
-        return Response({'captures':serializer.data})
+        return Response({'captures':serializer.data,'status':200})
         

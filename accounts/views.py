@@ -18,7 +18,7 @@ class CreateUserView(APIView):
         del data['confirm_password']
 
         User.objects.create_user(**data)
-        return Response(status=200)
+        return Response({'status':200},status=200)
 
 class LoginView(APIView):
     def post(self,request):
