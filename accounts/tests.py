@@ -13,17 +13,14 @@ class BaseTestCase(APITestCase):
         }
         url=reverse('create-user')
         response=self.client.post(url,data=registeration_credentials)
+
+
+
+    def test_login(self):
         url=reverse('login')
         login_credentials={
             'email':'test@gmail.com',
             'password':'testuser123'
         }
         response=self.client.post(url,data=login_credentials)
-        self.token=f'Token {response.json()["access_token"]}'      
-
-
-
-    def test_all_captures(self):
-        url=reverse('all-captures')
-        response=self.client.get(url,HTTP_AUTHORIZATION=self.token)
-        print(response)
+        print(response.json())
