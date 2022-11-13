@@ -39,7 +39,8 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid login credentials")
 
         print('LOG: AUTH SUCCESS')
-        token=Token.objects.create(user=user)
+        
+        token=Token.objects.get_or_create(user=user)
         attrs['token']=token
         return attrs
 
