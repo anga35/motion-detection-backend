@@ -40,7 +40,7 @@ class LoginSerializer(serializers.Serializer):
 
         print('LOG: AUTH SUCCESS')
         
-        token=Token.objects.get_or_create(user=user)
+        token,_=Token.objects.get_or_create(user=user)
         attrs['token']=token
         return attrs
 
