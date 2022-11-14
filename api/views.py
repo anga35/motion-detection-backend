@@ -6,7 +6,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser,FormParser
 from .models import CaptureFrame
-from .serializers import CaptureFrameSerializer,UserSignUpSerializer
+from .serializers import CaptureFrameSerializer
+from accounts.serializers import UserSignUpSerializer
 from django.contrib.auth import get_user_model
 # Create your views here.
 
@@ -28,9 +29,11 @@ class AddCapturedFrameView(APIView):
 
 class GetAllCaptures(APIView):
     authentication_classes=[TokenAuthentication]
-    permission_classes=[IsAuthenticated]
+    # permission_classes=[IsAuthenticated]
     def get(self,request):
         captures=CaptureFrame.objects.order_by('-created_at')
         serializer=CaptureFrameSerializer(captures,many=True)
+        for data in serializer.data :
+            data['created_at']=data['created_at'][:10]
         return Response({'captures':serializer.data,'status':200})
         
