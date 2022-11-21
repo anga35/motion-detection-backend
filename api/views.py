@@ -37,3 +37,4 @@ class GetAllCaptures(APIView):
             data['created_at']=data['created_at'][:10]
         return Response({'captures':serializer.data,'status':200})
         
+#
